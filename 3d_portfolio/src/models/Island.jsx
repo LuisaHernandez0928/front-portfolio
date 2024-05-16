@@ -191,19 +191,19 @@ export default function Island({
        */
       const normalizedRotation =
         ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-
+console.log(normalizedRotation);
       // Set the current stage based on the island's orientation
       switch (true) {
-        case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
+        case normalizedRotation >= 4.8 && normalizedRotation <= 5.89:
           setCurrentStage(4);
           break;
-        case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
+        case normalizedRotation >= 0.2 && normalizedRotation <= 1.47:
           setCurrentStage(3);
           break;
-        case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
+        case normalizedRotation >= 2 && normalizedRotation <= 3.21:
           setCurrentStage(2);
           break;
-        case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
+        case normalizedRotation >= 3.25 && normalizedRotation <= 4.70:
           setCurrentStage(1);
           break;
         default:
