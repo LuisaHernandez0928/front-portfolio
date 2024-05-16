@@ -34,7 +34,7 @@ export default function Island({
   // Use a ref for rotation speed
   const rotationSpeed = useRef(0);
   // Define a damping factor to control rotation damping
-  const dampingFactor = 0.95;
+  const dampingFactor = 0.99;
 
   // Handle pointer (mouse or touch) down event
   const handlePointerDown = (event) => {
