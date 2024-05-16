@@ -3,6 +3,9 @@ import { Canvas } from "@react-three/fiber";
 
 import Loader from '../components/Loader';
 import Island  from '../models/Island';
+import Sky from '../models/Sky';
+import Birds from '../models/Birds';
+import Plane from '../models/Plane';
 {
   /* <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
         Pop up
@@ -36,7 +39,10 @@ const Home = () => {
             <directionalLight position={[10,1,8]} intensity={3}/>
             <ambientLight intensity={0}/>
             <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1}/>
+            <Birds />
+            <Sky />
             <Island position={islandPosition}  scale={islandScale} rotation ={islandRotation}/>
+            <Plane />
         </Suspense>
       </Canvas>
     </section>
