@@ -7,7 +7,7 @@ const InfoBox = ({ text, link, btnText }) => {
     <div className="info-box">
       <p className="font-medium sm:text-xl text-center">{text}</p>
       <Link to={link} className="neo-brutalism-white neo-btn">
-        {btnText}
+        <span>{btnText}</span>
         <img src={arrow} className="w-4 h-4 object-contain"/>
       </Link>
     </div>
@@ -25,7 +25,7 @@ const renderStages = {
     <InfoBox
       text="Check out the projects I've created."
       link="/projects"
-      btnText={"Visit my portfolio"}
+      btnText={"Portfolio"}
     />
   ),
   3: (

@@ -1,9 +1,13 @@
 import { useRef, useState } from "react";
+import useAlert from "../hooks/useAlert";
+import emailjs from "@emailjs/browser";
+
+
 const Contact = () => {
   const formRef = useRef(null)
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
-
+  const { alert, showAlert, hideAlert } = useAlert();
   const handleChange = (e) => {
     setForm({
      ...form,
@@ -15,11 +19,55 @@ const Contact = () => {
   const handleFocus = () => {};
   //It is called once you click out
   const handleBlur = () => {};
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    formRef.current.submit();
+    //setCurrentAnimation("hit");
+
+    emailjs
+      .send(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          to_name: "JavaScript Mastery",
+          from_email: form.email,
+          to_email: "sujata@jsmastery.pro",
+          message: form.message,
+        },
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setIsLoading(false);
+          showAlert({
+            show: true,
+            text: "Thank you for your message 😃",
+            type: "success",
+          });
+
+          setTimeout(() => {
+            hideAlert(false);
+            //setCurrentAnimation("idle");
+            setForm({
+              name: "",
+              email: "",
+              message: "",
+            });
+          }, [3000]);
+        },
+        (error) => {
+          setIsLoading(false);
+          console.error(error);
+          //setCurrentAnimation("idle");
+
+          showAlert({
+            show: true,
+            text: "I didn't receive your message 😢",
+            type: "danger",
+          });
+        }
+      );
   };
   return (
     <section className="flex relative lh:flex-row flex-col max-container">
