@@ -5,6 +5,8 @@ import emailjs from "@emailjs/browser";
 
 import Fox from "../models/Fox";
 import Loader from "../components/Loader";
+import Alert from "../components/Alert";
+
 const Contact = () => {
   const formRef = useRef(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -30,7 +32,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setCurrentAnimation("run");
+    setCurrentAnimation('hit');
     emailjs
       .send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
@@ -77,7 +79,8 @@ const Contact = () => {
       );
   };
   return (
-    <section className="flex relative lh:flex-row flex-col max-container">
+    <section className="flex relative lg:flex-row flex-col max-container">
+      {alert.show && <Alert {...alert}/>}
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Get in Touch</h1>
         <form
@@ -157,9 +160,6 @@ const Contact = () => {
               scale={[0.7, 0.7, 0.7]}
             />
           </Suspense>
-          {alert.show && (
-            <div className={`alert ${alert.type}`}>{alert.text}</div>
-          )}
         </Canvas>
       </div>
     </section>
